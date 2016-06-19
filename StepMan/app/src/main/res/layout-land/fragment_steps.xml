@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/pagebackground"
+    tools:context="jonathanmanos.stepman.MainTabbedActivity$PlaceholderFragment">
+
+    <GridLayout
+        android:id="@+id/email_login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10pt">
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/stepsperweek"
+            android:text="Steps per Week: 0"
+            android:textSize="16pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/stepsperday"
+            android:text="Steps per Day: 0"
+            android:textSize="16pt"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+        android:id="@+id/stepsperhour"
+        android:text="Steps per Hour: 0"
+        android:textSize="16pt"
+        android:layout_marginTop="5pt"
+        android:layout_marginBottom="5pt"
+        android:background="@drawable/background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/stepsperminute"
+            android:text="Steps per Minute: 0"
+            android:textSize="16pt"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/stepsMiles"
+            android:text="Walked 0 Miles"
+            android:textSize="16pt"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/stepsMarathon"
+            android:text="Walked 0 Marathons"
+            android:textSize="16pt"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/stepsworld"
+            android:text="Reached world: z"
+            android:textSize="16pt"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:background="@drawable/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </GridLayout>
+
+</RelativeLayout>
