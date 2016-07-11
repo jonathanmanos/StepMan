@@ -1,14 +1,13 @@
-package jonathanmanos.stepman;
+package jonathanmanos.stepman.Activities;
 
-import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
+
+import jonathanmanos.stepman.R;
+import jonathanmanos.stepman.Services.StepCounterService;
 
 public class MenuActivity extends AppCompatActivity {
 

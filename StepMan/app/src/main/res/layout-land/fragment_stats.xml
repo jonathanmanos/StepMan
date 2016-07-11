@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="jonathanmanos.stepman.MainTabbedActivity$PlaceholderFragment">
+    tools:context=".Activities.MainTabbedActivity$PlaceholderFragment">
 
     <GridLayout
         android:id="@+id/email_login_form"
@@ -68,7 +68,7 @@
                 android:id="@+id/buttonHP"
                 android:text="+"
                 android:textColor="@color/black"
-                android:background="@drawable/button"
+                android:background="@drawable/button_gen"
                 android:textSize="12pt"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                     android:id="@+id/buttonStrength"
                     android:text="+"
                     android:textColor="@color/black"
-                    android:background="@drawable/button"
+                    android:background="@drawable/button_gen"
                     android:textSize="12pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -160,7 +160,7 @@
                     android:id="@+id/buttonDefense"
                     android:text="+"
                     android:textColor="@color/black"
-                    android:background="@drawable/button"
+                    android:background="@drawable/button_gen"
                     android:textSize="12pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                     android:id="@+id/buttonMagic"
                     android:text="+"
                     android:textColor="@color/black"
-                    android:background="@drawable/button"
+                    android:background="@drawable/button_gen"
                     android:textSize="12pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -250,7 +250,7 @@
                     android:id="@+id/buttonMagicDef"
                     android:text="+"
                     android:textColor="@color/black"
-                    android:background="@drawable/button"
+                    android:background="@drawable/button_gen"
                     android:textSize="12pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -295,7 +295,7 @@
                     android:id="@+id/buttonSpeed"
                     android:text="+"
                     android:textColor="@color/black"
-                    android:background="@drawable/button"
+                    android:background="@drawable/button_gen"
                     android:textSize="12pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -316,7 +316,7 @@
             <Button
                 android:id="@+id/buttonpointadjustor"
                 android:text="Adjust Points To Add: 1"
-                android:background="@drawable/menu_button"
+                android:background="@drawable/button_menu"
                 android:textSize="12pt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -335,7 +335,7 @@
 
             <Button
                 android:text="Reset Points"
-                android:background="@drawable/reset_button2"
+                android:background="@drawable/button_reset"
                 android:textSize="12pt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

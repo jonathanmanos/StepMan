@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="jonathanmanos.stepman.BattleActivity">
+    tools:context=".Activities.BattleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,12 +38,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <ProgressBar
-                    android:id="@+id/healthBar"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -114,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/stepmanrunning"/>
+                    android:src="@drawable/asset_stepman_stepmanrunning"/>
                 <ImageView
                     android:id="@+id/myanimation"
                     android:layout_width="match_parent"
@@ -134,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/stepmanrunning"/>
+                    android:src="@drawable/asset_stepman_stepmanrunning"/>
                 <ImageView
                     android:id="@+id/enemyanimation"
                     android:layout_width="match_parent"
@@ -163,7 +158,7 @@
                     android:id="@+id/blazekickbutton"
                     android:text="Blaze Kick"
                     android:textSize="10pt"
-                    android:background="@drawable/worldbutton"
+                    android:background="@drawable/button_world"
                     android:layout_margin="2pt"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -177,7 +172,7 @@
                     android:textSize="10pt"
                     android:layout_weight="1"
                     android:layout_margin="2pt"
-                    android:background="@drawable/worldbutton"
+                    android:background="@drawable/button_world"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:onClick="iceStrike"
@@ -194,7 +189,7 @@
                     android:id="@+id/megapunchbutton"
                     android:text="Mega Punch"
                     android:textSize="10pt"
-                    android:background="@drawable/worldbutton"
+                    android:background="@drawable/button_world"
                     android:layout_weight="1"
                     android:layout_margin="2pt"
                     android:layout_width="match_parent"
@@ -208,7 +203,7 @@
                     android:textSize="10pt"
                     android:layout_weight="1"
                     android:layout_margin="2pt"
-                    android:background="@drawable/worldbutton"
+                    android:background="@drawable/button_world"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:onClick="goToWorld"

@@ -1,7 +1,6 @@
-package jonathanmanos.stepman;
+package jonathanmanos.stepman.Services;
 
 import android.app.Activity;
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,13 +15,12 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
-import android.widget.TextView;
+
+import jonathanmanos.stepman.Activities.MainTabbedActivity;
+import jonathanmanos.stepman.Activities.MenuActivity;
+import jonathanmanos.stepman.R;
 
 /**
  * Created by Jonny on 4/14/2016.
@@ -147,7 +145,7 @@ public class StepCounterService extends Service implements SensorEventListener {
                 mEditor.putInt("difficultyValue", difficultyValue);
                 mEditor.apply();
 
-                Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.stepmanrunning);
+                Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.asset_stepman_stepmanrunning);
                 //Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 CharSequence title = "StepMan Level Up!";
                 CharSequence contentText = "You just rose to Level " + level + "!";
@@ -156,7 +154,7 @@ public class StepCounterService extends Service implements SensorEventListener {
                 NotificationCompat.Builder mBuilder =
                         (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                                 .setPriority(Notification.PRIORITY_HIGH)
-                                .setSmallIcon(R.drawable.stepmanrunning)
+                                .setSmallIcon(R.drawable.asset_stepman_stepmanrunning)
                                 .setLargeIcon(largeIcon)
                                 .setContentTitle(title)
                                 .setContentText(contentText)

@@ -1,4 +1,4 @@
-package jonathanmanos.stepman;
+package jonathanmanos.stepman.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,26 +9,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import java.util.Set;
+import jonathanmanos.stepman.Data.StepManCharacter;
+import jonathanmanos.stepman.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private SharedPreferences mPrefs;
     private Spinner spinnerColor;
     private Spinner spinnerDifficulty;
+    private StepManCharacter stepMan;
+
+    private String name;
+    private String color;
+    private String difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mPrefs = getSharedPreferences("label", 0);
-        String name = mPrefs.getString("name","");
-        String color = mPrefs.getString("color","");
-        String difficulty = mPrefs.getString("difficulty","");
+
+        stepMan = new StepManCharacter(this.getApplicationContext());
+
+        name = stepMan.getStepManName();
+        color = stepMan.getStepManColor();
+        difficulty = stepMan.getStepManDifficulty();
 
         AutoCompleteTextView newNameView = (AutoCompleteTextView) findViewById(R.id.name);
         newNameView.setText(name);
@@ -77,31 +83,44 @@ public class SettingsActivity extends AppCompatActivity {
                 .setTitle("Save Settings")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences.Editor mEditor = mPrefs.edit();
 
                         AutoCompleteTextView newNameView = (AutoCompleteTextView) findViewById(R.id.name);
                         String newName = newNameView.getText().toString();
-                        String color = spinnerColor.getSelectedItem().toString();
-                        String difficulty = spinnerDifficulty.getSelectedItem().toString();
+                        String newColor = spinnerColor.getSelectedItem().toString();
+                        String newDifficulty = spinnerDifficulty.getSelectedItem().toString();
 
-                        if (!mPrefs.getString("difficulty", "").contentEquals(difficulty))
+                        if (stepMan.getStepManDifficulty().contentEquals(newDifficulty))
                         {
-                            System.out.println("changing steps at level up to: " + mPrefs.getInt("steps", 0));
+                            System.out.println("changing steps at level up to: " + stepMan.getStepManSteps());
+                            /*
                             MainTabbedActivity.stepsAtLevelUp = mPrefs.getInt("steps", 0);
                             mEditor.putInt("stepsAtLevelUp", MainTabbedActivity.stepsAtLevelUp);
                             mEditor.apply();
+                            */
+                            stepMan.setStepManStepsAtLevelUp(stepMan.getStepManSteps());
+                            stepMan.saveStepMan();
                         }
 
+                        /*
                         MainTabbedActivity.name = newName;
                         MainTabbedActivity.color = color;
                         MainTabbedActivity.difficulty = difficulty;
                         MainTabbedActivity.stepsAtLevelUp = mPrefs.getInt("steps", 0);
+                        */
 
+
+
+                        /*
                         mEditor.putString("name", newName);
                         mEditor.putString("color", color);
                         mEditor.putString("difficulty", difficulty);
-                        mEditor.commit();
-
+                        mEditor.apply();
+                        */
+                        stepMan.setStepManName(newName);
+                        stepMan.setStepManColor(newColor);
+                        stepMan.setStepManDifficulty(newDifficulty);
+                        stepMan.setStepManStepsAtLevelUp(stepMan.getStepManSteps());
+                        stepMan.saveStepMan();
                         finish();
                     }
                 })
@@ -122,7 +141,9 @@ public class SettingsActivity extends AppCompatActivity {
                 .setTitle("Restart Game")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mPrefs.edit().putInt("worldLevel",1).apply();
+                        //mPrefs.edit().putInt("worldLevel",1).apply();
+                        stepMan.setWorldLevel(1);
+                        stepMan.saveStepMan();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -143,7 +164,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //System.out.println("WOOHOO");
-                        mPrefs.edit().clear().commit();
+                        stepMan.deleteStepMan(getApplicationContext());
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();

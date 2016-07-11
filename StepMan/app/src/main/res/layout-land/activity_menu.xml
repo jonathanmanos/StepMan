@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@drawable/pagebackground"
-    tools:context="jonathanmanos.stepman.SettingsActivity">
+    tools:context=".Activities.SettingsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5pt"
-            android:src="@drawable/stepman"
+            android:src="@drawable/asset_stepman_stepman"
             />
 
         </LinearLayout>
@@ -38,7 +38,7 @@
 
         <Button
             android:text="Play"
-            android:background="@drawable/playbutton"
+            android:background="@drawable/button_play"
             android:textSize="12pt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
 
         <Button
             android:text="Profile"
-            android:background="@drawable/menu_button"
+            android:background="@drawable/button_menu"
             android:textSize="12pt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
 
             <Button
                 android:text="Stats"
-                android:background="@drawable/menu_button"
+                android:background="@drawable/button_menu"
                 android:textSize="12pt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
             <Button
                 android:text="Steps"
-                android:background="@drawable/menu_button"
+                android:background="@drawable/button_menu"
                 android:textSize="12pt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
 
             <Button
                 android:text="Settings"
-                android:background="@drawable/menu_button"
+                android:background="@drawable/button_menu"
                 android:textSize="12pt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

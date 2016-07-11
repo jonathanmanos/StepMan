@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     android:orientation="horizontal"
     android:background="@drawable/pagebackground"
-    tools:context="jonathanmanos.stepman.MainTabbedActivity$PlaceholderFragment">
+    tools:context=".Activities.MainTabbedActivity$PlaceholderFragment">
 
 
         <LinearLayout
@@ -37,7 +37,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:layout_marginTop="10pt"
-                android:src="@drawable/stepmanrunning"
+                android:src="@drawable/asset_stepman_stepmanrunning"
                 android:scaleType="centerInside"
                 android:adjustViewBounds="true"/>
 

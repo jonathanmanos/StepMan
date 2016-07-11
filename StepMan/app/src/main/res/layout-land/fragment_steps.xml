@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/pagebackground"
-    tools:context="jonathanmanos.stepman.MainTabbedActivity$PlaceholderFragment">
+    tools:context=".Activities.MainTabbedActivity$PlaceholderFragment">
 
     <GridLayout
         android:id="@+id/email_login_form"

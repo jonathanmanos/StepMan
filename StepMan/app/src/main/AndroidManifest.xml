@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="@string/step_detector"
@@ -17,13 +18,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/stepmanrunning"
+        android:icon="@drawable/asset_stepman_stepmanrunning"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,35 +34,43 @@
         </activity>
 
         <service
-            android:name=".StepCounterService"
+            android:name=".Services.StepCounterService"
             android:enabled="true" />
 
+        <receiver
+            android:name=".receiver.StartStepCounterAtBootReceiver"
+            android:label="StartMyServiceAtBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
-            android:name=".MainTabbedActivity"
+            android:name=".Activities.MainTabbedActivity"
             android:label="@string/title_activity_main_tabbed"
-            android:parentActivityName=".MenuActivity"
+            android:parentActivityName=".Activities.MenuActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".Activities.MenuActivity"
             android:label="Menu"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:label="StepMan"
-            android:parentActivityName=".MainTabbedActivity">
+            android:parentActivityName=".Activities.MainTabbedActivity">
 
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainTabbedActivity" />
+                android:value=".Activities.MainTabbedActivity" />
         </activity>
         <activity
-            android:name=".WorldActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".Activities.WorldActivity"
+            android:parentActivityName=".Activities.MenuActivity"
             />
         <activity
-            android:name=".BattleActivity"
-            android:parentActivityName=".WorldActivity"/>
+            android:name=".Activities.BattleActivity"
+            android:parentActivityName=".Activities.WorldActivity"/>
     </application>
 
 </manifest>

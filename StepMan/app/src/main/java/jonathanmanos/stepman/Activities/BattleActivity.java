@@ -1,19 +1,19 @@
-package jonathanmanos.stepman;
+package jonathanmanos.stepman.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Random;
+
+import jonathanmanos.stepman.R;
 
 public class BattleActivity extends AppCompatActivity {
 
@@ -52,20 +52,21 @@ public class BattleActivity extends AppCompatActivity {
 
         mPrefs = getSharedPreferences("label", 0);
 
-        name = mPrefs.getString("name", "");
-        color = mPrefs.getString("color", "");
-        difficulty = mPrefs.getString("difficulty", "");
+        name = WorldActivity.battleManager.stepMan.getStepManName();
+        color = WorldActivity.battleManager.stepMan.getStepManColor();
+        difficulty = WorldActivity.battleManager.stepMan.getStepManDifficulty();
 
-        hp = mPrefs.getInt("hp", 10);
-        System.out.println("currentHP:" + WorldActivity.currentHP);
+        hp = WorldActivity.battleManager.stepMan.getStepManHP();
+        strength = WorldActivity.battleManager.stepMan.getStepManStrength();
+        defense = WorldActivity.battleManager.stepMan.getStepManDefense();
+        magic = WorldActivity.battleManager.stepMan.getStepManMagic();
+        magicDef = WorldActivity.battleManager.stepMan.getStepManMagicDef();
+        speed = WorldActivity.battleManager.stepMan.getStepManSpeed();
+
+        System.out.println("currentHP:" + WorldActivity.battleManager.getCurrentHP());
         if(newLevel) {
-            WorldActivity.currentHP = hp;
+            WorldActivity.battleManager.setCurrentHP(hp);
         }
-        strength = mPrefs.getInt("strength", 10);
-        defense = mPrefs.getInt("defense", 10);
-        magic = mPrefs.getInt("magic", 10);
-        magicDef = mPrefs.getInt("magicDef", 10);
-        speed = mPrefs.getInt("speed", 10);
 
         //testingcode
         /*
@@ -80,30 +81,27 @@ public class BattleActivity extends AppCompatActivity {
 
         busy = false;
 
-        WorldActivity.battlePlayer.start();
+        WorldActivity.soundManager.playBattlePlayer();
 
         TextView battlename = (TextView)findViewById(R.id.battlename);
         battlename.setText(name);
 
-        ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        
-
         TextView battlehp = (TextView)findViewById(R.id.battlehp);
-        battlehp.setText("HP: " + WorldActivity.currentHP + "/" + hp);
+        battlehp.setText("HP: " + WorldActivity.battleManager.getCurrentHP() + "/" + hp);
 
         ImageView battleimage = (ImageView) findViewById(R.id.battleimage);
 
         System.out.println("color is: " + color);
         if (color.contentEquals("Black")) {
-            battleimage.setImageResource(R.drawable.stepmanrunning);
+            battleimage.setImageResource(R.drawable.asset_stepman_stepmanrunning);
         } else if (color.contentEquals("Blue")) {
-            battleimage.setImageResource(R.drawable.stepmanrunning_blue);
+            battleimage.setImageResource(R.drawable.asset_stepman_stepmanrunning_blue);
         } else if (color.contentEquals("Green")) {
-            battleimage.setImageResource(R.drawable.stepmanrunning_green);
+            battleimage.setImageResource(R.drawable.asset_stepman_stepmanrunning_green);
         } else if (color.contentEquals("Red")) {
-            battleimage.setImageResource(R.drawable.stepmanrunning_red);
+            battleimage.setImageResource(R.drawable.asset_stepman_stepmanrunning_red);
         } else if (color.contentEquals("Luigi")) {
-            battleimage.setImageResource(R.drawable.luigi);
+            battleimage.setImageResource(R.drawable.asset_stepman_luigi);
         }
 
         ImageView battleenemyimage = (ImageView) findViewById(R.id.battleenemyimage);
@@ -113,73 +111,73 @@ public class BattleActivity extends AppCompatActivity {
             enemyHP = 100;
             enemyType = "normal";
             enemyName = "Chicken";
-            battleenemyimage.setImageResource(R.drawable.w11chicken);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w11chicken);
         }
         if(level == 2)
         {
             enemyHP = 200;
-            enemyType = "fire";
+            enemyType = "asset_battle_fire";
             enemyName = "Paratroopa";
-            battleenemyimage.setImageResource(R.drawable.w12paratroopa);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w12paratroopa);
         }
         if(level == 3)
         {
             enemyHP = 500;
-            enemyType = "ice";
+            enemyType = "asset_battle_ice";
             enemyName = "Freezard";
-            battleenemyimage.setImageResource(R.drawable.w13freezard);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w13freezard);
         }
         if(level == 4)
         {
             enemyHP = 1000;
             enemyType = "normal";
             enemyName = "Infernal";
-            battleenemyimage.setImageResource(R.drawable.w14infernal);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w14infernal);
         }
         if(level == 5)
         {
             enemyHP = 1800;
-            enemyType = "ice";
+            enemyType = "asset_battle_ice";
             enemyName = "Star Wolf";
-            battleenemyimage.setImageResource(R.drawable.w15starwolf);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w15starwolf);
         }
         if(level == 6)
         {
             enemyHP = 3000;
-            enemyType = "fire";
+            enemyType = "asset_battle_fire";
             enemyName = "Ridley";
-            battleenemyimage.setImageResource(R.drawable.w16ridley);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w16ridley);
         }
         if(level == 7)
         {
             enemyHP = 4500;
             enemyType = "normal";
             enemyName = "Sephiroth";
-            battleenemyimage.setImageResource(R.drawable.w17sephiroth);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w17sephiroth);
         }
         if(level == 8)
         {
             enemyHP = 6000;
-            enemyType = "fire";
+            enemyType = "asset_battle_fire";
             enemyName = "Groudon";
-            battleenemyimage.setImageResource(R.drawable.w18groudon);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w18groudon);
         }
         if(level == 9)
         {
             enemyHP = 8000;
-            enemyType = "ice";
+            enemyType = "asset_battle_ice";
             enemyName = "Necron";
-            battleenemyimage.setImageResource(R.drawable.w19necron);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w19necron);
         }
         if(level == 10)
         {
             enemyHP = 9999;
             enemyType = "normal";
             enemyName = "Master Hand";
-            battleenemyimage.setImageResource(R.drawable.w110masterhand);
+            battleenemyimage.setImageResource(R.drawable.asset_enemy_w110masterhand);
         }
         if(newLevel){
-            WorldActivity.currentEnemyHP = enemyHP;
+            WorldActivity.battleManager.setCurrentEnemyHP(enemyHP);
             newLevel = false;
         }
 
@@ -187,21 +185,22 @@ public class BattleActivity extends AppCompatActivity {
         battleenemy.setText(enemyName);
 
         TextView battleenemyhp = (TextView)findViewById(R.id.battleenemyhp);
-        battleenemyhp.setText("HP: " + WorldActivity.currentEnemyHP + "/" + enemyHP);
+        battleenemyhp.setText("HP: " + WorldActivity.battleManager.getCurrentEnemyHP() + "/" + enemyHP);
 
         h = new Handler();
     }
 
     public void enemyAttack() {
-        if(WorldActivity.currentEnemyHP <= 0)
+        if(WorldActivity.battleManager.getCurrentEnemyHP() <= 0)
             updatePage();
         else{
-            WorldActivity.enemyPunchPlayer.start();
+            WorldActivity.soundManager.setAttackEnemyPlayer(R.raw.punches);
+            WorldActivity.soundManager.playAttackEnemyPlayer();
             TextView battleenemyhp = (TextView)findViewById(R.id.battleenemyhp);
-            battleenemyhp.setText("HP: " + WorldActivity.currentEnemyHP + "/" + enemyHP);
+            battleenemyhp.setText("HP: " + WorldActivity.battleManager.getCurrentEnemyHP() + "/" + enemyHP);
 
             final ImageView myanimation = (ImageView) findViewById(R.id.myanimation);
-            myanimation.setImageResource(R.drawable.pow);
+            myanimation.setImageResource(R.drawable.asset_battle_pow);
             myanimation.setAlpha(.6F);
 
             int attack = 0;
@@ -281,7 +280,8 @@ public class BattleActivity extends AppCompatActivity {
             if(attack < 1)
                 attack = 1;
 
-            WorldActivity.currentHP -= attack;
+            int damage = WorldActivity.battleManager.getCurrentHP() - attack;
+            WorldActivity.battleManager.setCurrentHP(damage);
 
             TextView battlepopup = (TextView)findViewById(R.id.battlepopup);
             battlepopup.setText(Integer.toString(attack));
@@ -333,10 +333,10 @@ public class BattleActivity extends AppCompatActivity {
 
     public void updatePage() {
 
-        if(WorldActivity.currentEnemyHP <= 0)
-            WorldActivity.currentEnemyHP = 0;
-        else if(WorldActivity.currentHP <= 0)
-            WorldActivity.currentHP = 0;
+        if(WorldActivity.battleManager.getCurrentEnemyHP() <= 0)
+            WorldActivity.battleManager.setCurrentEnemyHP(0);
+        else if(WorldActivity.battleManager.getCurrentHP() <= 0)
+            WorldActivity.battleManager.setCurrentHP(0);
         else {
             busy = false;
             enableButtons();
@@ -344,15 +344,15 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         TextView battlehp = (TextView)findViewById(R.id.battlehp);
-        battlehp.setText("HP: "+ WorldActivity.currentHP + "/" + hp);
+        battlehp.setText("HP: "+ WorldActivity.battleManager.getCurrentHP() + "/" + hp);
 
         TextView battleenemyhp = (TextView)findViewById(R.id.battleenemyhp);
-        battleenemyhp.setText("HP: "+ WorldActivity.currentEnemyHP + "/" + enemyHP);
+        battleenemyhp.setText("HP: "+ WorldActivity.battleManager.getCurrentEnemyHP() + "/" + enemyHP);
 
-        if(WorldActivity.currentHP == 0)
+        if(WorldActivity.battleManager.getCurrentHP() == 0)
         {
             ImageView myanimation = (ImageView) findViewById(R.id.myanimation);
-            myanimation.setImageResource(R.drawable.skull);
+            myanimation.setImageResource(R.drawable.asset_battle_skull);
             myanimation.setAlpha(.9F);
 
             Runnable skull = new Runnable() {
@@ -367,10 +367,10 @@ public class BattleActivity extends AppCompatActivity {
             Runnable youfailed = new Runnable() {
                 @Override
                 public void run(){
-                    WorldActivity.battlePlayer.stop();
-                    WorldActivity.failurePlayer.start();
+                    WorldActivity.soundManager.stopBattlePlayer();
+                    WorldActivity.soundManager.playFailurePlayer();
                     ImageView battleimage = (ImageView) findViewById(R.id.battleimage);
-                    battleimage.setImageResource(R.drawable.failure);
+                    battleimage.setImageResource(R.drawable.asset_battle_failure);
                 }
             };
             Runnable backtoworld = new Runnable() {
@@ -384,11 +384,11 @@ public class BattleActivity extends AppCompatActivity {
             h.postDelayed(backtoworld, 4000);
         }
 
-        if(WorldActivity.currentEnemyHP == 0){
-            WorldActivity.battlePlayer.stop();
-            WorldActivity.victoryPlayer.start();
+        if(WorldActivity.battleManager.getCurrentEnemyHP() == 0){
+            WorldActivity.soundManager.stopBattlePlayer();
+            WorldActivity.soundManager.playVictoryPlayer();
             ImageView enemyanimation = (ImageView) findViewById(R.id.enemyanimation);
-            enemyanimation.setImageResource(R.drawable.skull);
+            enemyanimation.setImageResource(R.drawable.asset_battle_skull);
             enemyanimation.setAlpha(.9F);
 
             Runnable skull = new Runnable() {
@@ -404,17 +404,16 @@ public class BattleActivity extends AppCompatActivity {
                 @Override
                 public void run(){
                     ImageView battleenemyimage = (ImageView) findViewById(R.id.battleenemyimage);
-                    battleenemyimage.setImageResource(R.drawable.youdidit);
+                    battleenemyimage.setImageResource(R.drawable.asset_battle_youdidit);
                 }
             };
             Runnable backtoworld = new Runnable() {
                 @Override
                 public void run(){
-                    WorldActivity.victoryPlayer.stop();
-                    WorldActivity.victoryPlayer.prepareAsync();
-                    SharedPreferences.Editor mEditor = mPrefs.edit();
-                    if(level == mPrefs.getInt("worldLevel", 1))
-                    mEditor.putInt("worldLevel", level+1).apply();
+                    WorldActivity.soundManager.stopVictoryPlayer();
+
+                    if(level == WorldActivity.battleManager.stepMan.getWorldLevel())
+                        WorldActivity.battleManager.stepMan.setWorldLevel(level + 1);
                     WorldActivity.needToRecreate = true;
                     finish();
                 }
@@ -429,19 +428,20 @@ public class BattleActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         busy = true;
         disableButtons();
-        WorldActivity.magicPlayer.start();
+        WorldActivity.soundManager.setAttackStepManPlayer(R.raw.fireball);
+        WorldActivity.soundManager.playAttackStepManPlayer();
         final ImageView enemyanimation = (ImageView) findViewById(R.id.enemyanimation);
-        enemyanimation.setImageResource(R.drawable.fire);
+        enemyanimation.setImageResource(R.drawable.asset_battle_fire);
         enemyanimation.setAlpha(.8F);
 
         int attack = 0;
         if (enemyType.equals("normal")) {
             attack = magic;
         }
-        else if (enemyType.equals("ice")) {
+        else if (enemyType.equals("asset_battle_ice")) {
             attack = magic + speed + strength;
         }
-        else if (enemyType.equals("fire")) {
+        else if (enemyType.equals("asset_battle_fire")) {
             attack = magic / 2;
         }
         if((int)(Math.random() * 10) == 0)
@@ -449,7 +449,8 @@ public class BattleActivity extends AppCompatActivity {
             attack *= 2;
         }
         attack += (int)(Math.random() * 10 + 1);
-        WorldActivity.currentEnemyHP -= attack;
+        int damage = WorldActivity.battleManager.getCurrentEnemyHP() - attack;
+        WorldActivity.battleManager.setCurrentEnemyHP(damage);
 
         TextView battlepopupenemy = (TextView)findViewById(R.id.battlepopupenemy);
         battlepopupenemy.setText(Integer.toString(attack));
@@ -500,19 +501,20 @@ public class BattleActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         busy = true;
         disableButtons();
-        WorldActivity.magicPlayer.start();
+        WorldActivity.soundManager.setAttackStepManPlayer(R.raw.fireball);
+        WorldActivity.soundManager.playAttackStepManPlayer();
         ImageView enemyanimation = (ImageView) findViewById(R.id.enemyanimation);
-        enemyanimation.setImageResource(R.drawable.icecube);
+        enemyanimation.setImageResource(R.drawable.asset_battle_icecube);
         enemyanimation.setAlpha(.8F);
 
         int attack = 0;
         if(enemyType.equals("normal")) {
             attack = magic;
         }
-        else if(enemyType.equals("ice")) {
+        else if(enemyType.equals("asset_battle_ice")) {
             attack = magic/2;
         }
-        else if(enemyType.equals("fire")) {
+        else if(enemyType.equals("asset_battle_fire")) {
             attack = magic + speed + strength;
         }
         if((int)(Math.random() * 10) == 0)
@@ -520,7 +522,9 @@ public class BattleActivity extends AppCompatActivity {
             attack *= 2;
         }
         attack += (int)(Math.random() * 10 + 1);
-        WorldActivity.currentEnemyHP -= attack;
+
+        int damage = WorldActivity.battleManager.getCurrentEnemyHP() - attack;
+        WorldActivity.battleManager.setCurrentEnemyHP(damage);
 
 
         TextView battlepopupenemy = (TextView)findViewById(R.id.battlepopupenemy);
@@ -545,17 +549,18 @@ public class BattleActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         busy = true;
         disableButtons();
-        WorldActivity.punchPlayer.start();
+        WorldActivity.soundManager.setAttackStepManPlayer(R.raw.punches);
+        WorldActivity.soundManager.playAttackStepManPlayer();
         final ImageView enemyanimation = (ImageView) findViewById(R.id.enemyanimation);
-        enemyanimation.setImageResource(R.drawable.punch);
+        enemyanimation.setImageResource(R.drawable.asset_battle_punch);
         enemyanimation.setAlpha(.8F);
 
         int attack = 0;
         if (enemyType.equals("normal")) {
             attack = strength * 2;
-        } else if (enemyType.equals("ice")) {
+        } else if (enemyType.equals("asset_battle_ice")) {
             attack = strength;
-        } else if (enemyType.equals("fire")) {
+        } else if (enemyType.equals("asset_battle_fire")) {
             attack = strength;
         }
         if((int)(Math.random() * 10) == 0)
@@ -563,7 +568,9 @@ public class BattleActivity extends AppCompatActivity {
             attack *= 2;
         }
         attack += (int)(Math.random() * 10 + 1);
-        WorldActivity.currentEnemyHP -= attack;
+
+        int damage = WorldActivity.battleManager.getCurrentEnemyHP() - attack;
+        WorldActivity.battleManager.setCurrentEnemyHP(damage);
 
         TextView battlepopupenemy = (TextView)findViewById(R.id.battlepopupenemy);
         battlepopupenemy.setText(Integer.toString(attack));
@@ -614,9 +621,8 @@ public class BattleActivity extends AppCompatActivity {
     public void goToWorld(View view) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         busy = true;
-        WorldActivity.battlePlayer.stop();
-        WorldActivity.battlePlayer.prepareAsync();
-        WorldActivity.booPlayer.start();
+        WorldActivity.soundManager.stopBattlePlayer();
+        WorldActivity.soundManager.playRunAwayPlayer();
         final ImageView battleimage = (ImageView) findViewById(R.id.battleimage);
 
         Runnable shake1 = new Runnable() {
@@ -696,9 +702,8 @@ public class BattleActivity extends AppCompatActivity {
             System.out.println("yoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
             busy = true;
-            WorldActivity.battlePlayer.stop();
-            WorldActivity.battlePlayer.prepareAsync();
-            WorldActivity.booPlayer.start();
+            WorldActivity.soundManager.stopBattlePlayer();
+            WorldActivity.soundManager.playRunAwayPlayer();
             final ImageView battleimage = (ImageView) findViewById(R.id.battleimage);
 
             Runnable shake1 = new Runnable() {
@@ -748,10 +753,8 @@ public class BattleActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (isFinishing()) {
-            WorldActivity.battlePlayer.stop();
-            WorldActivity.victoryPlayer.stop();
-            WorldActivity.battlePlayer.prepareAsync();
-            WorldActivity.victoryPlayer.prepareAsync();
+            WorldActivity.soundManager.stopBattlePlayer();
+            WorldActivity.soundManager.stopVictoryPlayer();
             finish();
         } else {
 
